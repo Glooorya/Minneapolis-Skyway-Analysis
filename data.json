@@ -1,0 +1,730 @@
+{
+    "shopping": [
+        {
+            "name": "Mr. Santana",
+            "lat": 44.983967,
+            "lng": -93.247385,
+            "category": "shopping"
+        },
+        {
+            "name": "8th Street Market",
+            "lat": 44.988241,
+            "lng": -93.242623,
+            "category": "shopping"
+        },
+        {
+            "name": "Barnes & Noble",
+            "lat": 44.949271,
+            "lng": -93.320081,
+            "category": "shopping"
+        },
+        {
+            "name": "Kowalski's Uptown Market",
+            "lat": 44.957879,
+            "lng": -93.296054,
+            "category": "shopping"
+        },
+        {
+            "name": "5 Below",
+            "lat": 45.004922,
+            "lng": -93.23082,
+            "category": "shopping"
+        },
+        {
+            "name": "PetSmart",
+            "lat": 45.004874,
+            "lng": -93.230445,
+            "category": "shopping"
+        },
+        {
+            "name": "Rustica Bakery & Cafe",
+            "lat": 44.949352,
+            "lng": -93.320347,
+            "category": "shopping"
+        },
+        {
+            "name": "A Baker's Wife's",
+            "lat": 44.926741,
+            "lng": -93.232359,
+            "category": "shopping"
+        },
+        {
+            "name": "Broders’ Cucina Italiana",
+            "lat": 44.912551,
+            "lng": -93.309182,
+            "category": "shopping"
+        },
+        {
+            "name": "Galls",
+            "lat": 44.929417,
+            "lng": -93.253123,
+            "category": "shopping"
+        },
+        {
+            "name": "Great Harvest Bakery",
+            "lat": 44.92398,
+            "lng": -93.315051,
+            "category": "shopping"
+        },
+        {
+            "name": "Turtle Bread Company",
+            "lat": 44.923155,
+            "lng": -93.323856,
+            "category": "shopping"
+        },
+        {
+            "name": "Wild Rumpus Books",
+            "lat": 44.924596,
+            "lng": -93.313728,
+            "category": "shopping"
+        },
+        {
+            "name": "Buzz's",
+            "lat": 44.926774,
+            "lng": -93.232685,
+            "category": "shopping"
+        },
+        {
+            "name": "United Noodle",
+            "lat": 44.957836,
+            "lng": -93.242199,
+            "category": "shopping"
+        },
+        {
+            "name": "Lunds & Byerlys",
+            "lat": 44.98741,
+            "lng": -93.25515,
+            "category": "shopping"
+        },
+        {
+            "name": "Warfa Store",
+            "lat": 44.962591,
+            "lng": -93.252677,
+            "category": "shopping"
+        },
+        {
+            "name": "West Bank Grocery",
+            "lat": 44.969355,
+            "lng": -93.247042,
+            "category": "shopping"
+        },
+        {
+            "name": "Arce's Barber Studio",
+            "lat": 44.948504,
+            "lng": -93.297505,
+            "category": "shopping"
+        },
+        {
+            "name": "Floyd's 99 Barbershop",
+            "lat": 44.948493,
+            "lng": -93.295561,
+            "category": "shopping"
+        },
+        {
+            "name": "Ragstock",
+            "lat": 44.948215,
+            "lng": -93.299226,
+            "category": "shopping"
+        },
+        {
+            "name": "Instant Oil Change",
+            "lat": 44.958903,
+            "lng": -93.293957,
+            "category": "shopping"
+        },
+        {
+            "name": "Hennepin Lake Beer and Liquor",
+            "lat": 44.948513,
+            "lng": -93.294905,
+            "category": "shopping"
+        },
+        {
+            "name": "Palm Beach Tan",
+            "lat": 44.948235,
+            "lng": -93.292831,
+            "category": "shopping"
+        },
+        {
+            "name": "T-Mobile",
+            "lat": 44.948229,
+            "lng": -93.294631,
+            "category": "shopping"
+        },
+        {
+            "name": "Covered",
+            "lat": 44.949062,
+            "lng": -93.294617,
+            "category": "shopping"
+        },
+        {
+            "name": "Drama",
+            "lat": 44.949062,
+            "lng": -93.294722,
+            "category": "shopping"
+        },
+        {
+            "name": "Pilgrim Cleaners",
+            "lat": 44.949164,
+            "lng": -93.292779,
+            "category": "shopping"
+        },
+        {
+            "name": "Cal Surf",
+            "lat": 44.948247,
+            "lng": -93.304091,
+            "category": "shopping"
+        },
+        {
+            "name": "Goldy's Locker Room",
+            "lat": 44.980545,
+            "lng": -93.235524,
+            "category": "shopping"
+        }
+    ],
+    "restaurants": [
+        {
+            "name": "Legendary Spice",
+            "lat": 44.973472,
+            "lng": -93.220995,
+            "category": "restaurants"
+        },
+        {
+            "name": "Chilango",
+            "lat": 44.949633,
+            "lng": -93.315264,
+            "category": "restaurants"
+        },
+        {
+            "name": "Longfellow Grill",
+            "lat": 44.948681,
+            "lng": -93.206059,
+            "category": "restaurants"
+        },
+        {
+            "name": "Punch Pizza",
+            "lat": 44.949353,
+            "lng": -93.320498,
+            "category": "restaurants"
+        },
+        {
+            "name": "Café & Bar Lurcat",
+            "lat": 44.971265,
+            "lng": -93.286236,
+            "category": "restaurants"
+        },
+        {
+            "name": "CRISP & GREEN",
+            "lat": 44.948731,
+            "lng": -93.319957,
+            "category": "restaurants"
+        },
+        {
+            "name": "Bryant-Lake Bowl and Theater",
+            "lat": 44.948501,
+            "lng": -93.290136,
+            "category": "restaurants"
+        },
+        {
+            "name": "The Oceanaire Seafood Room",
+            "lat": 44.978136,
+            "lng": -93.271715,
+            "category": "restaurants"
+        },
+        {
+            "name": "Fogo de Chao",
+            "lat": 44.978018,
+            "lng": -93.274315,
+            "category": "restaurants"
+        },
+        {
+            "name": "Lot 57",
+            "lat": 44.973252,
+            "lng": -93.276638,
+            "category": "restaurants"
+        },
+        {
+            "name": "Leaning Tower of Pizza",
+            "lat": 44.959262,
+            "lng": -93.288324,
+            "category": "restaurants"
+        },
+        {
+            "name": "Tenant",
+            "lat": 44.924887,
+            "lng": -93.291005,
+            "category": "restaurants"
+        },
+        {
+            "name": "Pepito's Mexigo Deli",
+            "lat": 44.918841,
+            "lng": -93.278494,
+            "category": "restaurants"
+        },
+        {
+            "name": "Bucheron",
+            "lat": 44.925202,
+            "lng": -93.277691,
+            "category": "restaurants"
+        },
+        {
+            "name": "Cafe Ena",
+            "lat": 44.919443,
+            "lng": -93.284204,
+            "category": "restaurants"
+        },
+        {
+            "name": "Tap Society",
+            "lat": 44.919775,
+            "lng": -93.284237,
+            "category": "restaurants"
+        },
+        {
+            "name": "Harriet Brasserie",
+            "lat": 44.924695,
+            "lng": -93.313839,
+            "category": "restaurants"
+        },
+        {
+            "name": "Alma",
+            "lat": 44.983946,
+            "lng": -93.248063,
+            "category": "restaurants"
+        },
+        {
+            "name": "Eastro",
+            "lat": 45.011278,
+            "lng": -93.263346,
+            "category": "restaurants"
+        },
+        {
+            "name": "Maria's Cafe",
+            "lat": 44.962494,
+            "lng": -93.257509,
+            "category": "restaurants"
+        },
+        {
+            "name": "Sawatdee",
+            "lat": 44.977922,
+            "lng": -93.259661,
+            "category": "restaurants"
+        },
+        {
+            "name": "Bona",
+            "lat": 44.973767,
+            "lng": -93.226318,
+            "category": "restaurants"
+        },
+        {
+            "name": "Hard Times Cafe",
+            "lat": 44.969586,
+            "lng": -93.246166,
+            "category": "restaurants"
+        },
+        {
+            "name": "Pizza Lucé",
+            "lat": 44.96288,
+            "lng": -93.240525,
+            "category": "restaurants"
+        },
+        {
+            "name": "Tamu Grill and Catering",
+            "lat": 44.969453,
+            "lng": -93.245872,
+            "category": "restaurants"
+        },
+        {
+            "name": "Tenka Ramen",
+            "lat": 44.948501,
+            "lng": -93.297411,
+            "category": "restaurants"
+        },
+        {
+            "name": "Darbar India Grill & Bar",
+            "lat": 44.948233,
+            "lng": -93.294997,
+            "category": "restaurants"
+        },
+        {
+            "name": "China Moon",
+            "lat": 44.949132,
+            "lng": -93.292779,
+            "category": "restaurants"
+        },
+        {
+            "name": "Kbop Korean Bistro",
+            "lat": 44.981987,
+            "lng": -93.236777,
+            "category": "restaurants"
+        },
+        {
+            "name": "El Mariachi Bar & Restaurant",
+            "lat": 44.95223,
+            "lng": -93.278151,
+            "category": "restaurants"
+        }
+    ],
+    "coffee": [
+        {
+            "name": "Corner Coffee",
+            "lat": 44.985758,
+            "lng": -93.276264,
+            "category": "coffee"
+        },
+        {
+            "name": "Purple Onion Café",
+            "lat": 44.980142,
+            "lng": -93.237553,
+            "category": "coffee"
+        },
+        {
+            "name": "Milkweed Cafe",
+            "lat": 44.948538,
+            "lng": -93.216746,
+            "category": "coffee"
+        },
+        {
+            "name": "May Day Cafe",
+            "lat": 44.939885,
+            "lng": -93.252645,
+            "category": "coffee"
+        },
+        {
+            "name": "Sebastian Joe's Ice Cream",
+            "lat": 44.923833,
+            "lng": -93.314676,
+            "category": "coffee"
+        },
+        {
+            "name": "Jones Coffee",
+            "lat": 44.924779,
+            "lng": -93.315345,
+            "category": "coffee"
+        },
+        {
+            "name": "Sebastian Joe's Ice Cream",
+            "lat": 44.962574,
+            "lng": -93.292145,
+            "category": "coffee"
+        },
+        {
+            "name": "SK Coffee",
+            "lat": 44.959018,
+            "lng": -93.287828,
+            "category": "coffee"
+        },
+        {
+            "name": "Sencha Tea Bar",
+            "lat": 44.955411,
+            "lng": -93.296643,
+            "category": "coffee"
+        },
+        {
+            "name": "Spyhouse Coffee Shop",
+            "lat": 44.958934,
+            "lng": -93.294544,
+            "category": "coffee"
+        },
+        {
+            "name": "Corner Coffee",
+            "lat": 44.952095,
+            "lng": -93.297676,
+            "category": "coffee"
+        },
+        {
+            "name": "Bob's Java Hut",
+            "lat": 44.953849,
+            "lng": -93.287832,
+            "category": "coffee"
+        },
+        {
+            "name": "Precision Grind Coffee",
+            "lat": 44.962627,
+            "lng": -93.239704,
+            "category": "coffee"
+        },
+        {
+            "name": "Code Blu Coffee",
+            "lat": 44.962917,
+            "lng": -93.233452,
+            "category": "coffee"
+        },
+        {
+            "name": "Starbucks",
+            "lat": 44.962411,
+            "lng": -93.278061,
+            "category": "coffee"
+        },
+        {
+            "name": "Spyhouse Coffee",
+            "lat": 44.957446,
+            "lng": -93.277659,
+            "category": "coffee"
+        },
+        {
+            "name": "Isles Bun & Coffee",
+            "lat": 44.952155,
+            "lng": -93.298721,
+            "category": "coffee"
+        },
+        {
+            "name": "$1.99 Americano",
+            "lat": 44.980443,
+            "lng": -93.235266,
+            "category": "coffee"
+        },
+        {
+            "name": "South City Cafe",
+            "lat": 44.941073,
+            "lng": -93.262335,
+            "category": "coffee"
+        },
+        {
+            "name": "Turtle Bread",
+            "lat": 44.916239,
+            "lng": -93.262897,
+            "category": "coffee"
+        },
+        {
+            "name": "Starbucks",
+            "lat": 44.973964,
+            "lng": -93.229873,
+            "category": "coffee"
+        },
+        {
+            "name": "Aster Cafe",
+            "lat": 44.984495,
+            "lng": -93.255064,
+            "category": "coffee"
+        },
+        {
+            "name": "Dunn Bros",
+            "lat": 44.967811,
+            "lng": -93.283775,
+            "category": "coffee"
+        },
+        {
+            "name": "Wildflyer Coffee",
+            "lat": 44.943109,
+            "lng": -93.230707,
+            "category": "coffee"
+        },
+        {
+            "name": "Kilimanjaro Cafe",
+            "lat": 44.970594,
+            "lng": -93.247443,
+            "category": "coffee"
+        },
+        {
+            "name": "Bichota Coffee",
+            "lat": 44.934604,
+            "lng": -93.262754,
+            "category": "coffee"
+        },
+        {
+            "name": "Modern Times Cafe",
+            "lat": 44.9446,
+            "lng": -93.26286,
+            "category": "coffee"
+        },
+        {
+            "name": "Pow Wow Grounds",
+            "lat": 44.962905,
+            "lng": -93.254452,
+            "category": "coffee"
+        },
+        {
+            "name": "Caribou Coffee",
+            "lat": 44.987492,
+            "lng": -93.255392,
+            "category": "coffee"
+        },
+        {
+            "name": "Nokomis Beach Coffee Cafe",
+            "lat": 44.912806,
+            "lng": -93.232465,
+            "category": "coffee"
+        }
+    ],
+    "public-space": [
+        {
+            "name": "Nokomis Naturescape Garden",
+            "lat": 44.913029,
+            "lng": -93.234364,
+            "category": "public-space"
+        },
+        {
+            "name": "Bohemian Flats Park",
+            "lat": 44.975305,
+            "lng": -93.24104,
+            "category": "public-space"
+        },
+        {
+            "name": "West Bank Community Garden",
+            "lat": 44.970434,
+            "lng": -93.243611,
+            "category": "public-space"
+        },
+        {
+            "name": "Mill Ruins Park",
+            "lat": 44.979346,
+            "lng": -93.255625,
+            "category": "public-space"
+        },
+        {
+            "name": "Father Hennepin Bluffs Park",
+            "lat": 44.98254,
+            "lng": -93.252869,
+            "category": "public-space"
+        },
+        {
+            "name": "Bassett Creek Park",
+            "lat": 44.991134,
+            "lng": -93.273758,
+            "category": "public-space"
+        },
+        {
+            "name": "Orvin \"Ole\" Olson Park",
+            "lat": 44.998798,
+            "lng": -93.276948,
+            "category": "public-space"
+        },
+        {
+            "name": "Van Cleve Park Recreation Center",
+            "lat": 44.985956,
+            "lng": -93.231043,
+            "category": "public-space"
+        },
+        {
+            "name": "We Garden",
+            "lat": 44.916371,
+            "lng": -93.253951,
+            "category": "public-space"
+        },
+        {
+            "name": "First Bridge Park",
+            "lat": 44.984651,
+            "lng": -93.264643,
+            "category": "public-space"
+        },
+        {
+            "name": "Mississippi Gorge Regional Park",
+            "lat": 44.934863,
+            "lng": -93.198888,
+            "category": "public-space"
+        },
+        {
+            "name": "West River Parkway",
+            "lat": 44.952815,
+            "lng": -93.217962,
+            "category": "public-space"
+        },
+        {
+            "name": "The Commons",
+            "lat": 44.975773,
+            "lng": -93.261862,
+            "category": "public-space"
+        },
+        {
+            "name": "Bde Maka Ska Park",
+            "lat": 44.941328,
+            "lng": -93.314954,
+            "category": "public-space"
+        },
+        {
+            "name": "Lake Harriet Park",
+            "lat": 44.922905,
+            "lng": -93.305072,
+            "category": "public-space"
+        },
+        {
+            "name": "Todd Park",
+            "lat": 44.900469,
+            "lng": -93.264253,
+            "category": "public-space"
+        },
+        {
+            "name": "Heritage Park",
+            "lat": 44.982114,
+            "lng": -93.29506,
+            "category": "public-space"
+        },
+        {
+            "name": "Kings Highway",
+            "lat": 44.926526,
+            "lng": -93.293838,
+            "category": "public-space"
+        },
+        {
+            "name": "Hall Park",
+            "lat": 44.995019,
+            "lng": -93.28761,
+            "category": "public-space"
+        },
+        {
+            "name": "Xcel Field Park",
+            "lat": 45.025855,
+            "lng": -93.273843,
+            "category": "public-space"
+        },
+        {
+            "name": "Northeast Athletic Field",
+            "lat": 45.002791,
+            "lng": -93.240787,
+            "category": "public-space"
+        },
+        {
+            "name": "Nicollet Island Park",
+            "lat": 44.987763,
+            "lng": -93.263014,
+            "category": "public-space"
+        },
+        {
+            "name": "Shoreview Triangles",
+            "lat": 44.905142,
+            "lng": -93.236934,
+            "category": "public-space"
+        },
+        {
+            "name": "Lake of the Isles Park",
+            "lat": 44.956206,
+            "lng": -93.307365,
+            "category": "public-space"
+        },
+        {
+            "name": "Cedar Lake Park",
+            "lat": 44.960775,
+            "lng": -93.319934,
+            "category": "public-space"
+        },
+        {
+            "name": "Minnehaha Creek Park",
+            "lat": 44.912774,
+            "lng": -93.257551,
+            "category": "public-space"
+        },
+        {
+            "name": "Minnehaha Creek West Park",
+            "lat": 44.907953,
+            "lng": -93.309107,
+            "category": "public-space"
+        },
+        {
+            "name": "Central Mississippi Riverfront Regional Park",
+            "lat": 44.9867,
+            "lng": -93.262017,
+            "category": "public-space"
+        },
+        {
+            "name": "North Mississippi Regional Park",
+            "lat": 45.039466,
+            "lng": -93.284179,
+            "category": "public-space"
+        },
+        {
+            "name": "Dean Parkway",
+            "lat": 44.95187,
+            "lng": -93.316128,
+            "category": "public-space"
+        }
+    ]
+}

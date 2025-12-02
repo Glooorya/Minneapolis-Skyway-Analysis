@@ -1,88 +1,315 @@
 <!DOCTYPE html>
-<html lang="zh">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>明尼阿波利斯 Skyway 路径分析</title>
+    <title>Everlea Style Map Interface</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+
     <style>
-        /* CSS 用于创建布局 */
-        body, html {
+        /* --- CSS VARIABLES & RESET --- */
+        :root {
+            --bg-color: #F2F0E9;       /* Cream/Beige background */
+            --text-color: #2C3333;     /* Dark Charcoal */
+            --accent-color: #2C3333;   /* Active state color */
+            --inactive-color: #DQD9D1; /* Slightly darker beige for inactive elements */
+            --border-color: #D3D3D3;
+            --font-serif: 'Playfair Display', serif;
+            --font-sans: 'Lato', sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
             margin: 0;
             padding: 0;
-            height: 100%;
-            font-family: Arial, sans-serif;
-            overflow: hidden; /* 防止滚动条 */
         }
-        #container {
-            display: flex; /* 使用 Flexbox 进行布局 */
-            height: 100%;
-        }
-        #sidebar {
-            width: 300px; /* 侧边栏宽度 */
-            padding: 20px;
-            background-color: #f8f9fa;
-            box-shadow: 2px 0 5px rgba(0,0,0,0.1);
-            overflow-y: auto; /* 侧边栏内容过多时可滚动 */
-            z-index: 1000;
-        }
-        #main-content {
-            flex-grow: 1; /* 地图区域占据剩余空间 */
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: var(--font-sans);
+            line-height: 1.6;
+            height: 100vh;
             display: flex;
             flex-direction: column;
         }
-        #header {
-            padding: 10px 20px;
-            background-color: #ffffff;
-            border-bottom: 1px solid #ddd;
+
+        /* --- HEADER SECTION --- */
+        header {
+            padding: 40px 60px 20px 60px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
         }
-        #map-placeholder {
-            flex-grow: 1; /* 地图占据剩余高度 */
-            background-color: #e0e0e0; /* 地图加载前的背景色 */
+
+        .logo {
+            font-family: var(--font-serif);
+            font-size: 2.5rem;
+            font-weight: 700;
+            letter-spacing: -1px;
         }
-        .search-group {
-            margin-bottom: 15px;
+
+        .subtitle {
+            font-family: var(--font-serif);
+            font-size: 1.5rem;
+            max-width: 400px;
+            text-align: right;
+            color: #555;
         }
-        .search-group label {
-            display: block;
+
+        /* --- SEARCH SECTION (NEW REQUEST) --- */
+        .search-container {
+            padding: 0 60px;
+            margin-bottom: 30px;
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .input-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .input-group label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
             margin-bottom: 5px;
-            font-weight: bold;
+            opacity: 0.7;
         }
-        .search-group input[type="text"] {
+
+        .search-input {
+            background: transparent;
+            border: none;
+            border-bottom: 1px solid var(--text-color);
+            padding: 8px 0;
+            font-family: var(--font-sans);
+            font-size: 1rem;
+            width: 250px;
+            color: var(--text-color);
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-bottom: 2px solid var(--text-color);
+        }
+
+        .search-btn {
+            margin-top: 18px;
+            padding: 8px 24px;
+            background-color: var(--text-color);
+            color: var(--bg-color);
+            border: none;
+            font-family: var(--font-sans);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            transition: opacity 0.3s;
+        }
+
+        .search-btn:hover {
+            opacity: 0.8;
+        }
+
+        /* --- NAVIGATION TABS --- */
+        .tabs-container {
+            padding: 0 60px;
+            display: flex;
             width: 100%;
-            padding: 8px;
-            box-sizing: border-box;
-            border: 1px solid #ccc;
-            border-radius: 4px;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
         }
+
+        .tab-btn {
+            background: rgba(0,0,0,0.05);
+            border: none;
+            padding: 15px 30px;
+            font-family: var(--font-sans);
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            letter-spacing: 2px;
+            font-weight: 700;
+            color: var(--text-color);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-right: 2px;
+        }
+
+        .tab-btn.active {
+            background-color: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        .tab-btn:hover:not(.active) {
+            background-color: rgba(0,0,0,0.1);
+        }
+
+        /* --- MAIN CONTENT GRID --- */
+        .main-content {
+            display: grid;
+            grid-template-columns: 350px 1fr; /* Fixed width list, fluid map */
+            flex-grow: 1;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        /* LEFT COLUMN: LIST */
+        .list-panel {
+            padding: 40px 60px;
+            overflow-y: auto;
+            border-right: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .location-list {
+            list-style: none;
+        }
+
+        .location-item {
+            padding: 15px 0;
+            border-bottom: 1px solid rgba(0,0,0,0.1);
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            transition: padding-left 0.2s;
+        }
+
+        .location-item:hover {
+            padding-left: 10px;
+            color: #555;
+        }
+
+        .location-number {
+            font-weight: 700;
+            margin-right: 15px;
+            font-size: 0.8rem;
+            opacity: 0.6;
+        }
+
+        /* RIGHT COLUMN: MAP */
+        .map-panel {
+            background-color: #E0DFDB; /* Placeholder map color */
+            position: relative;
+            background-image: url('https://upload.wikimedia.org/wikipedia/commons/e/ec/Neighborhood_Map_1002.jpg'); /* Placeholder image */
+            background-size: cover;
+            background-position: center;
+            filter: grayscale(80%) sepia(20%); /* Styling to match the beige tone */
+        }
+
+        /* Map Pin Placeholder Style */
+        .map-pin {
+            position: absolute;
+            background-color: var(--text-color);
+            color: white;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
     </style>
 </head>
 <body>
-    <div id="container">
-        <div id="sidebar">
-            <h2>路径搜索</h2>
-            <div class="search-group">
-                <label for="start-point">起点 (Start)</label>
-                <input type="text" id="start-point" placeholder="输入起点地址">
-            </div>
-            <div class="search-group">
-                <label for="end-point">终点 (End)</label>
-                <input type="text" id="end-point" placeholder="输入终点地址">
-            </div>
-            <button onclick="alert('搜索功能待实现')">搜索 Skyway 路径</button>
-            <hr style="margin-top: 20px;">
-            <p style="font-size: small; color: #666;">* 注：搜索功能需要额外的 JavaScript 和地理编码服务。</p>
+
+    <header>
+        <div class="logo">Everlea</div>
+        <div class="subtitle">The perfect setting for your<br>new neighbourhood.</div>
+    </header>
+
+    <section class="search-container">
+        <div class="input-group">
+            <label for="origin">Origin</label>
+            <input type="text" id="origin" class="search-input" placeholder="Enter starting point">
+        </div>
+        <div class="input-group">
+            <label for="destination">Destination</label>
+            <input type="text" id="destination" class="search-input" placeholder="Enter destination">
+        </div>
+        <button class="search-btn">Route</button>
+    </section>
+
+    <nav class="tabs-container">
+        <button class="tab-btn active" onclick="filterCategory('shopping')">Shopping</button>
+        <button class="tab-btn" onclick="filterCategory('restaurants')">Restaurants</button>
+        <button class="tab-btn" onclick="filterCategory('coffee')">Coffee</button>
+        <button class="tab-btn" onclick="filterCategory('public-space')">Rest Public Space</button>
+    </nav>
+
+    <div class="main-content">
+        <div class="list-panel">
+            <ul class="location-list" id="list-container">
+                <li class="location-item"><span class="location-number">1</span> Sample Location A</li>
+                <li class="location-item"><span class="location-number">2</span> Sample Location B</li>
+                <li class="location-item"><span class="location-number">3</span> Sample Location C</li>
+            </ul>
         </div>
 
-        <div id="main-content">
-            <div id="header">
-                <h1>明尼阿波利斯 Skyway 路径分析项目</h1>
-                <p>探索明尼阿波利斯 Skyway 缓冲区内的道路网络和设施分布。</p>
-            </div>
-
-            <div id="map-placeholder">
-                <iframe id="map-iframe" src="map_content.html" style="width: 100%; height: 100%; border: none;"></iframe>
-            </div>
+        <div class="map-panel">
+            <div class="map-pin">1</div>
         </div>
     </div>
+
+    <script>
+        // Sample Data Structure
+        const locationData = {
+            'shopping': [
+                'Central Mall', 'High Street Boutique', 'Organic Market', 'Bookstore Haven'
+            ],
+            'restaurants': [
+                'The Rustic Table', 'Ocean Blue', 'Spicy Corner', 'Burger Bar'
+            ],
+            'coffee': [
+                'Morning Brew', 'Bean & Leaf', 'Espresso Lab', 'Daily Grind'
+            ],
+            'public-space': [
+                'Central Park', 'Riverside Walk', 'Community Garden', 'Sunset Plaza'
+            ]
+        };
+
+        // Tab Switching Function
+        function filterCategory(category) {
+            // 1. Update Buttons Styling
+            const buttons = document.querySelectorAll('.tab-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+
+            // 2. Update List Content
+            const listContainer = document.getElementById('list-container');
+            listContainer.innerHTML = ''; // Clear current list
+
+            const items = locationData[category];
+            if (items) {
+                items.forEach((item, index) => {
+                    const li = document.createElement('li');
+                    li.className = 'location-item';
+                    li.innerHTML = `<span class="location-number">${index + 1}</span> ${item}`;
+                    listContainer.appendChild(li);
+                });
+            }
+        }
+
+        // Initialize with Shopping
+        window.onload = function() {
+            // Manually trigger the first tab render logic
+            const listContainer = document.getElementById('list-container');
+            listContainer.innerHTML = ''; 
+            locationData['shopping'].forEach((item, index) => {
+                const li = document.createElement('li');
+                li.className = 'location-item';
+                li.innerHTML = `<span class="location-number">${index + 1}</span> ${item}`;
+                listContainer.appendChild(li);
+            });
+        };
+    </script>
 </body>
 </html>

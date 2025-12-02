@@ -3,10 +3,86 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>明尼阿波利斯 Skyway 分析 - 网页建设中</title>
+    <title>明尼阿波利斯 Skyway 路径分析</title>
+    <style>
+        /* CSS 用于创建布局 */
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            font-family: Arial, sans-serif;
+            overflow: hidden; /* 防止滚动条 */
+        }
+        #container {
+            display: flex; /* 使用 Flexbox 进行布局 */
+            height: 100%;
+        }
+        #sidebar {
+            width: 300px; /* 侧边栏宽度 */
+            padding: 20px;
+            background-color: #f8f9fa;
+            box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+            overflow-y: auto; /* 侧边栏内容过多时可滚动 */
+            z-index: 1000;
+        }
+        #main-content {
+            flex-grow: 1; /* 地图区域占据剩余空间 */
+            display: flex;
+            flex-direction: column;
+        }
+        #header {
+            padding: 10px 20px;
+            background-color: #ffffff;
+            border-bottom: 1px solid #ddd;
+        }
+        #map-placeholder {
+            flex-grow: 1; /* 地图占据剩余高度 */
+            background-color: #e0e0e0; /* 地图加载前的背景色 */
+        }
+        .search-group {
+            margin-bottom: 15px;
+        }
+        .search-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        .search-group input[type="text"] {
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+    </style>
 </head>
 <body>
-    <h1>欢迎来到明尼阿波利斯 Skyway 地理空间分析项目</h1>
-    <p>我们正在努力准备最终的交互式地图和数据分析结果。请稍后再回来查看！</p>
+    <div id="container">
+        <div id="sidebar">
+            <h2>路径搜索</h2>
+            <div class="search-group">
+                <label for="start-point">起点 (Start)</label>
+                <input type="text" id="start-point" placeholder="输入起点地址">
+            </div>
+            <div class="search-group">
+                <label for="end-point">终点 (End)</label>
+                <input type="text" id="end-point" placeholder="输入终点地址">
+            </div>
+            <button onclick="alert('搜索功能待实现')">搜索 Skyway 路径</button>
+            <hr style="margin-top: 20px;">
+            <p style="font-size: small; color: #666;">* 注：搜索功能需要额外的 JavaScript 和地理编码服务。</p>
+        </div>
+
+        <div id="main-content">
+            <div id="header">
+                <h1>明尼阿波利斯 Skyway 路径分析项目</h1>
+                <p>探索明尼阿波利斯 Skyway 缓冲区内的道路网络和设施分布。</p>
+            </div>
+
+            <div id="map-placeholder">
+                <iframe id="map-iframe" src="map_content.html" style="width: 100%; height: 100%; border: none;"></iframe>
+            </div>
+        </div>
+    </div>
 </body>
 </html>

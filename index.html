@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Minneapolis Skyway Analysis</title>
+    <title>Find Your Best Route in Minneapolis</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin=""/>
 
     <style>
-        /* --- 样式定义 (Everlea 风格) --- */
+        /* --- 核心配色与布局 --- */
         :root {
             --bg-color: #F2F0E9;
             --text-color: #2C3333;
@@ -22,10 +22,15 @@
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body { background-color: var(--bg-color); color: var(--text-color); font-family: var(--font-sans); height: 100vh; display: flex; flex-direction: column; }
         
-        /* 顶部 Header */
+        /* 1. 标题区域修改 */
         header { padding: 30px 60px 20px 60px; display: flex; justify-content: space-between; align-items: flex-end; }
-        .logo { font-family: var(--font-serif); font-size: 2.2rem; font-weight: 700; }
-        .subtitle { font-family: var(--font-serif); font-size: 1.2rem; color: #555; text-align: right; }
+        .logo { 
+            font-family: var(--font-serif); 
+            font-size: 2.2rem; 
+            font-weight: 700; 
+            line-height: 1.2; 
+        }
+        .subtitle { font-family: var(--font-serif); font-size: 1.1rem; color: #555; text-align: right; }
         
         /* 搜索框 */
         .search-container { padding: 0 60px; margin-bottom: 20px; display: flex; gap: 20px; align-items: center; }
@@ -35,32 +40,34 @@
         .search-input:focus { outline: none; border-bottom: 2px solid var(--text-color); }
         .search-btn { margin-top: 16px; padding: 8px 20px; background-color: var(--text-color); color: var(--bg-color); border: none; text-transform: uppercase; cursor: pointer; font-size: 0.75rem; }
 
-        /* 标签导航 */
+        /* 分类导航 */
         .tabs-container { padding: 0 60px; display: flex; border-bottom: 1px solid rgba(0,0,0,0.05); }
         .tab-btn { background: transparent; border: none; padding: 12px 25px; font-family: var(--font-sans); text-transform: uppercase; font-size: 0.7rem; letter-spacing: 1.5px; font-weight: 700; color: var(--text-color); cursor: pointer; opacity: 0.5; }
         .tab-btn.active { opacity: 1; border-bottom: 3px solid var(--text-color); }
         .tab-btn:hover { opacity: 1; }
 
-        /* 主内容布局 */
+        /* 主界面 */
         .main-content { display: grid; grid-template-columns: 350px 1fr; flex: 1; height: 100%; overflow: hidden; }
         .list-panel { padding: 20px 40px 20px 60px; overflow-y: auto; background-color: var(--bg-color); }
-        .location-item { padding: 12px 0; border-bottom: 1px solid rgba(0,0,0,0.1); font-size: 0.9rem; display: flex; align-items: center; cursor: pointer; }
-        .location-item:hover { transform: translateX(5px); color: #555; }
-        .location-number { font-weight: 700; margin-right: 12px; font-size: 0.8rem; }
         
-        /* 地图容器 */
-        #map { width: 100%; height: 100%; background-color: #000; z-index: 1; }
+        /* 列表项样式 */
+        .location-item { padding: 12px 0; border-bottom: 1px solid rgba(0,0,0,0.1); font-size: 0.9rem; display: flex; align-items: center; cursor: pointer; transition: all 0.2s; }
+        .location-item:hover { transform: translateX(5px); background-color: rgba(0,0,0,0.02); }
+        .location-number { font-weight: 700; margin-right: 12px; font-size: 0.8rem; min-width: 20px; }
         
-        /* 弹窗样式修正 */
-        .leaflet-popup-content-wrapper { background: var(--bg-color); color: var(--text-color); font-family: var(--font-sans); border-radius: 2px; }
+        /* 地图 */
+        #map { width: 100%; height: 100%; background-color: #222; z-index: 1; }
+        
+        /* 弹窗样式微调 */
+        .leaflet-popup-content-wrapper { background: var(--bg-color); color: var(--text-color); font-family: var(--font-sans); border-radius: 4px; padding: 5px; }
         .leaflet-popup-tip { background: var(--bg-color); }
     </style>
 </head>
 <body>
 
     <header>
-        <div class="logo">Skyway<br>Analysis</div>
-        <div class="subtitle">Minneapolis, MN<br>0.1 Mile Buffer Study</div>
+        <div class="logo">Find Your Best Route<br>in Minneapolis</div>
+        <div class="subtitle">Skyway System &<br>Urban Amenities Analysis</div>
     </header>
 
     <section class="search-container">
@@ -86,83 +93,102 @@
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
     
     <script>
-        // 1. 初始化地图 (中心点：Minneapolis, 缩放 15)
-        // 使用 Esri World Imagery (卫星图) 作为底图
+        // --- 1. 初始化地图 ---
         const map = L.map('map').setView([44.976, -93.270], 15);
 
+        // 使用卫星底图
         L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
             attribution: 'Tiles &copy; Esri',
             maxZoom: 19
         }).addTo(map);
 
-        // 2. 加载三个地图图层 (这就是你需要更新 HTML 的原因！)
-        // 我们需要告诉网页去读取 layer_streets, layer_buffer, layer_skyway 这三个文件
-
-        // (A) 加载街道 (最底层，灰色)
+        // --- 2. 加载地图图层 (Python 生成的 GeoJSON) ---
+        // 街道 (底层)
         fetch('layer_streets.geojson').then(r => r.json()).then(data => {
-            L.geoJSON(data, {
-                style: { color: "#9EA2A2", weight: 0.5, opacity: 0.8 }
-            }).addTo(map);
-        }).catch(e => console.error("找不到街道文件 layer_streets.geojson"));
+            L.geoJSON(data, { style: { color: "#9EA2A2", weight: 0.5, opacity: 0.8 } }).addTo(map);
+        }).catch(e => console.log("等待上传 layer_streets.geojson..."));
 
-        // (B) 加载缓冲区 (中间层，深蓝)
+        // 缓冲区 (中层)
         fetch('layer_buffer.geojson').then(r => r.json()).then(data => {
-            L.geoJSON(data, {
-                style: { fillColor: "#0C2340", color: "#0C2340", weight: 0, fillOpacity: 0.4 }
-            }).addTo(map);
-        }).catch(e => console.error("找不到缓冲区文件 layer_buffer.geojson"));
+            L.geoJSON(data, { style: { fillColor: "#0C2340", color: "#0C2340", weight: 0, fillOpacity: 0.4 } }).addTo(map);
+        }).catch(e => console.log("等待上传 layer_buffer.geojson..."));
 
-        // (C) 加载 Skyway 天桥 (最上层，绿色)
+        // 天桥 (顶层)
         fetch('layer_skyway.geojson').then(r => r.json()).then(data => {
-            L.geoJSON(data, {
-                style: { color: "#78BE20", weight: 3, opacity: 1 }
-            }).addTo(map);
-        }).catch(e => console.error("找不到天桥文件 layer_skyway.geojson"));
+            L.geoJSON(data, { style: { color: "#78BE20", weight: 3, opacity: 1 } }).addTo(map);
+        }).catch(e => console.log("等待上传 layer_skyway.geojson..."));
 
 
-        // 3. 加载 POI 交互数据 (左侧列表)
+        // --- 3. 处理 POI 数据 (与 Python 的 data.json 联动) ---
         let allData = {};
-        let markers = [];
-        
+        let currentMarkers = []; // 用于存储当前的圆点，方便清除
+
+        // 定义圆点样式 (亮蓝色，带白色边框)
         const amenityStyle = {
             radius: 6,
-            fillColor: "#236192", // 标记点颜色：亮蓝
-            color: "#fff",
-            weight: 1,
+            fillColor: "#236192", 
+            color: "#ffffff",
+            weight: 2,
             opacity: 1,
             fillOpacity: 0.9
         };
 
-        fetch('data.json').then(r => r.json()).then(data => {
-            allData = data;
-            switchCategory('shopping'); // 默认加载购物
-        });
+        // 读取 data.json (这是你 ipynb 导出的真实数据)
+        fetch('data.json')
+            .then(r => r.json())
+            .then(data => {
+                allData = data;
+                switchCategory('shopping'); // 默认显示购物
+            })
+            .catch(e => {
+                document.getElementById('list-container').innerHTML = 
+                '<li class="location-item" style="color:red">Error: data.json not found.<br>Make sure to upload it!</li>';
+            });
 
         function switchCategory(category) {
+            // 更新按钮高亮
             document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
-            event.target.classList.add('active');
+            // 简单的逻辑找到当前按钮 (根据点击事件或文本)
+            const btns = document.querySelectorAll('.tab-btn');
+            for(let btn of btns) {
+                if(btn.getAttribute('onclick').includes(category)) btn.classList.add('active');
+            }
 
             const list = document.getElementById('list-container');
             list.innerHTML = '';
-            markers.forEach(m => map.removeLayer(m));
-            markers = [];
+            
+            // 清除地图上旧的圆点
+            currentMarkers.forEach(m => map.removeLayer(m));
+            currentMarkers = [];
 
             const items = allData[category];
-            if (!items) return;
+            if (!items || items.length === 0) {
+                list.innerHTML = '<li class="location-item">No data in this category</li>';
+                return;
+            }
 
+            // --- 核心循环：生成列表和地图圆点 ---
             items.forEach((item, index) => {
+                
+                // 1. 在地图上添加圆点
+                const marker = L.circleMarker([item.lat, item.lng], amenityStyle)
+                    .bindPopup(`<b>${item.name}</b><br><span style="color:#666; font-size:0.8em">${category.toUpperCase()}</span>`)
+                    .addTo(map);
+                
+                currentMarkers.push(marker);
+
+                // 2. 在左侧列表添加项目
                 const li = document.createElement('li');
                 li.className = 'location-item';
                 li.innerHTML = `<span class="location-number">${index + 1}</span> ${item.name}`;
+                
+                // 3. 关键交互：点击列表 -> 地图飞过去 -> 弹出显示
                 li.onclick = () => {
-                    map.flyTo([item.lat, item.lng], 17); // 点击列表飞到该点
+                    map.flyTo([item.lat, item.lng], 18, { duration: 1.5 }); // 飞到位置
+                    marker.openPopup(); // 打开那个圆点的气泡
                 };
+                
                 list.appendChild(li);
-
-                const marker = L.circleMarker([item.lat, item.lng], amenityStyle)
-                    .bindPopup(`<b>${item.name}</b><br>${category}`)
-                    .addTo(map);
-                markers.push(marker);
             });
         }
     </script>
